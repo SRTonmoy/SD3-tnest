@@ -11,11 +11,16 @@ exports.signup = async (req, res) => {
     // Create a data object containing the username and password from the request body
     const data = {
         name: req.body.username,        // Taking 'username' input from frontend form
+
+        email: req.body.email,            // ✅ get email from form
+
         password: req.body.password     // Taking 'password' input from frontend form
     }
 
     // Check if a user with the same name already exists in the database
-    const existingUser = await User.findOne({ name: data.name });
+    
+    // const existingUser = await User.findOne({ name: data.name });
+    const existingUser = await User.findOne({ email: data.email });
     
     // If a user already exists, return a message and stop further execution
     if (existingUser) {

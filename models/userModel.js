@@ -6,6 +6,8 @@ const Loginschema = new mongoose.Schema({
     // Define 'name' field: must be a string and is required (cannot be empty)
     name: { type: String, required: true },
 
+    email: { type: String, required: true, unique: true },  // ✅ added email
+
     // Define 'password' field: must be a string and is required
     password: { type: String, required: true }
 });
