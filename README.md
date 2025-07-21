@@ -9,13 +9,13 @@
 ## 📸 Screenshots
 
 ### 🔐 Login Page  
-![Login Page](./public/screenshot1.png)
+![Login Page](./public/screenshot1.jpeg)
 
 ### 📋 Dashboard Overview  
-![Dashboard](./public/screenshot2.png)
+![Dashboard](./public/screenshot2.jpeg)
 
 ### 📁 Course Details & Features  
-![Features](./public/screenshot3.png)
+![Features](./public/screenshot3.jpeg)
 
 ---
 
