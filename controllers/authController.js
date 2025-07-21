@@ -37,7 +37,7 @@ exports.signup = async (req, res) => {
     await User.create(data);
 
     // Send confirmation to the client after successful registration
-    res.send("User registered successfully");
+    res.redirect("/login"); // Automatically go to login page after successful signup
 };
 
 
