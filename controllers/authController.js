@@ -46,7 +46,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         // Search the database for a user with the name matching the login input
-        const user = await User.findOne({ name: req.body.username });
+        const user = await User.findOne({ email: req.body.email });
 
         // If no user is found, send an error message
         if (!user) return res.send("Username not found");

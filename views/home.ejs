@@ -463,6 +463,20 @@
 
       function reportIssue(issue) {
         alert(`🔧 Reported: ${issue}`);
+        
+        // Close sidebar when clicking outside sidebar or hamburger button
+document.addEventListener("click", function(event) {
+  const sidebar = document.getElementById("sidebar");
+  const hamburger = document.querySelector(".hamburger");
+
+  const sidebarIsOpen = sidebar.classList.contains("show");
+
+  if (sidebarIsOpen) {
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove("show");
+    }
+  }
+});
       }
     </script>
   </body>
