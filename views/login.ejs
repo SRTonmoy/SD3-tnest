@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome | T.Nestia</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/6ad00072de.js"
+      crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body>
+    <h2 class="title">Welcome to <span>T.Nestia</span></h2>
+
+    <div class="container">
+      <div class="tabs">
+        <h3 id="loginTab" class="center">Let's Log in</h3>
+        
+      </div>
+
+      <form id="loginForm" class="form active" action="/login" method="post">
+        <input
+          type="email"
+          name="username"
+          placeholder="Email"
+          required
+          autocomplete="off"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit" class="btn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+
+        <p class="or">
+          Don't have an account? <a class="link" href="/signup">SignUp</a>
+        </p>
+
+        <div class="socials">
+          <a
+            href="https://accounts.google.com/signin"
+            target="_blank"
+            class="social"
+            title="Login with Google"
+          >
+            <i class="fab fa-google">G</i>
+          </a>
+          <a
+            href="https://www.facebook.com/login"
+            target="_blank"
+            class="social"
+            title="Login with Facebook"
+          >
+            <i class="fab fa-facebook-f">f</i>
+          </a>
+          <a
+            href="https://twitter.com/login"
+            target="_blank"
+            class="social"
+            title="Login with Twitter"
+          >
+            <i class="fab fa-twitter">t</i>
+          </a>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+     
+
+    <script src="script.js"></script>
+  </body>
+</html>
