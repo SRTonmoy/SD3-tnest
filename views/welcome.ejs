@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to T.Nestia</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.onload = () => lucide.createIcons();
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="p-6 flex justify-between items-center bg-gray-800 shadow-md">
+    <h1 class="text-3xl font-bold text-indigo-400">T.Nestia</h1>
+    <nav class="space-x-4">
+      <a href="/login" class="text-gray-300 hover:text-indigo-300">Login</a>
+      <a href="/signup" class="text-gray-300 hover:text-indigo-300">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="flex flex-col items-center justify-center px-6 text-center mt-20">
+    <img src="https://cdn-icons-png.flaticon.com/512/4221/4221462.png" alt="Students" class="w-32 mb-6" />
+
+    <h2 class="text-4xl font-extrabold mb-4 text-white">Welcome to <span class="text-indigo-400">T.Nestia</span></h2>
+    <p class="text-lg text-gray-400 max-w-xl mb-6">
+      Your all-in-one platform for <strong class="text-white">students and teachers</strong> — share resources, manage courses, and collaborate together in one digital classroom.
+    </p>
+
+    <div class="space-x-4">
+      <a href="/login" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded-lg shadow-md transition">Login</a>
+      <a href="/signup" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-lg shadow-md transition">Sign Up</a>
+    </div>
+  </main>
+
+  <!-- Features Section -->
+  <section class="mt-24 px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+        <i data-lucide="book-open" class="text-indigo-400 w-10 h-10 mx-auto mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Study Resources</h3>
+        <p class="text-gray-400 text-sm">Access notes, books, and class materials anytime.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+        <i data-lucide="users" class="text-indigo-400 w-10 h-10 mx-auto mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Connect with Teachers</h3>
+        <p class="text-gray-400 text-sm">One click away from guidance, mentorship, and answers.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+        <i data-lucide="file-text" class="text-indigo-400 w-10 h-10 mx-auto mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Assignment & Uploads</h3>
+        <p class="text-gray-400 text-sm">Submit and manage all your academic tasks in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 p-4 mt-24 text-center text-sm text-gray-500">
+    © 2025 T.Nestia — Built for Students & Teachers
+  </footer>
+
+</body>
+</html>

@@ -10,23 +10,22 @@ const authController = require('../controllers/authController');
 
 // -------------------- VIEW ROUTES --------------------
 
-// When the user visits the root URL ("/"), render the "login" view
-// This is typically a login form (login.ejs or login.pug file)
-router.get("/", (req, res) => res.render("login"));
+// Landing page route — this shows BEFORE login/signup
+router.get("/", (req, res) => res.render("welcome")); // <-- New landing page
 
-// When the user visits "/signup", render the "signup" view
-// This will show the signup form
+// Login page route
+router.get("/login", (req, res) => res.render("login"));
+
+// Signup page route
 router.get("/signup", (req, res) => res.render("signup"));
 
 
 // -------------------- LOGIC ROUTES --------------------
 
-// When the signup form is submitted, handle it with authController.signup
-// This route processes the signup form data and creates a user
+// Signup form submission handler
 router.post("/signup", authController.signup);
 
-// When the login form is submitted, handle it with authController.login
-// This route checks the credentials and logs the user in
+// Login form submission handler
 router.post("/login", authController.login);
 
 

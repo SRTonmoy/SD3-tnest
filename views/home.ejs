@@ -185,6 +185,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
+      <!-- <a href="#" onclick="showSection('classes')"
+        ><i data-lucide="book"></i> Dashboard
+        <span class="dashboard">Upload & Submit</span></a
+      > -->
       <a href="#" onclick="showSection('classes')"
         ><i data-lucide="book"></i> My Classes
         <span class="tooltip">Upload & Submit</span></a
@@ -400,84 +404,85 @@
     </div>
 
     <script>
-      lucide.createIcons();
+  lucide.createIcons();
 
-      function toggleSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("show");
-      }
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("show");
+  }
 
-      function showSection(id) {
-        document.getElementById("welcomeScreen").style.display = "none";
-        const sections = document.querySelectorAll("section");
-        sections.forEach((section) => section.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-        document.getElementById("sidebar").classList.remove("show");
-      }
+  function showSection(id) {
+    document.getElementById("welcomeScreen").style.display = "none";
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => section.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("sidebar").classList.remove("show");
+  }
 
-      function uploadFile() {
-        document.getElementById("fileUploader").click();
-      }
+  function uploadFile() {
+    document.getElementById("fileUploader").click();
+  }
 
-      function handleUpload() {
-        const file = document.getElementById("fileUploader").files[0];
-        if (file) {
-          alert(`✅ Uploaded: ${file.name}`);
-        }
-      }
-
-      function openPostModal() {
-        document.getElementById("postModal").style.display = "block";
-      }
-
-      function closePostModal() {
-        document.getElementById("postModal").style.display = "none";
-      }
-
-      function submitPost() {
-        const content = document.getElementById("postContent").value.trim();
-        if (content) {
-          alert("📝 Post Submitted:\n" + content);
-          closePostModal();
-        } else {
-          alert("⚠️ Post cannot be empty.");
-        }
-      }
-
-      function sendAnonymousPost() {
-        const message = document
-          .querySelector("#anonymous textarea")
-          .value.trim();
-        if (message) {
-          alert("✅ Anonymous post submitted.");
-        } else {
-          alert("⚠️ Empty message not allowed.");
-        }
-      }
-
-      function downloadTranscript() {
-        alert(
-          "📄 Download started (dummy). You can integrate real file later."
-        );
-      }
-
-      function reportIssue(issue) {
-        alert(`🔧 Reported: ${issue}`);
-        
-        // Close sidebar when clicking outside sidebar or hamburger button
-document.addEventListener("click", function(event) {
-  const sidebar = document.getElementById("sidebar");
-  const hamburger = document.querySelector(".hamburger");
-
-  const sidebarIsOpen = sidebar.classList.contains("show");
-
-  if (sidebarIsOpen) {
-    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-      sidebar.classList.remove("show");
+  function handleUpload() {
+    const file = document.getElementById("fileUploader").files[0];
+    if (file) {
+      alert(`✅ Uploaded: ${file.name}`);
     }
   }
-});
+
+  function openPostModal() {
+    document.getElementById("postModal").style.display = "block";
+  }
+
+  function closePostModal() {
+    document.getElementById("postModal").style.display = "none";
+  }
+
+  function submitPost() {
+    const content = document.getElementById("postContent").value.trim();
+    if (content) {
+      alert("📝 Post Submitted:\n" + content);
+      closePostModal();
+    } else {
+      alert("⚠️ Post cannot be empty.");
+    }
+  }
+
+  function sendAnonymousPost() {
+    const message = document
+      .querySelector("#anonymous textarea")
+      .value.trim();
+    if (message) {
+      alert("✅ Anonymous post submitted.");
+    } else {
+      alert("⚠️ Empty message not allowed.");
+    }
+  }
+
+  function downloadTranscript() {
+    alert(
+      "📄 Download started (dummy). You can integrate real file later."
+    );
+  }
+
+  function reportIssue(issue) {
+    alert(`🔧 Reported: ${issue}`);
+  }
+
+  // Close sidebar when clicking outside sidebar or hamburger button
+  document.addEventListener("click", function(event) {
+    const sidebar = document.getElementById("sidebar");
+    const hamburger = document.querySelector(".hamburger");
+
+    const sidebarIsOpen = sidebar.classList.contains("show");
+
+    if (sidebarIsOpen) {
+      if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+        sidebar.classList.remove("show");
       }
-    </script>
+    }
+  });
+</script>
+
   </body>
 </html>
