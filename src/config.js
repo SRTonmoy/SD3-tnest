@@ -14,20 +14,6 @@ connect.then(() => {
     console.log("Database cannot be Connected");
 })
 
-// Define a new schema for user login data with mongoose.Schema
-// This schema defines the structure of documents in the 'users' collection
-const Loginschema = new mongoose.Schema({
-    // 'name' field is a required string representing the username
-    name: {
-        type: String,
-        required: true
-    },
-    // 'password' field is a required string representing the hashed password
-    password: {
-        type: String,
-        required: true
-    }
-});
 
 // Create a mongoose model named 'users' based on the Loginschema
 // This model represents the 'users' collection in MongoDB and provides methods to interact with it

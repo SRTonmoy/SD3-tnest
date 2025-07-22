@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Define a schema (blueprint) for the user collection using mongoose.Schema
 const Loginschema = new mongoose.Schema({
     // Define 'name' field: must be a string and is required (cannot be empty)
-    // name: { type: String, required: true },
+    name: { type: String, required: true },
 
     email: { type: String, required: true, unique: true },  // ✅ added email
 

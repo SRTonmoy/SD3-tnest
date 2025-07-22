@@ -168,7 +168,7 @@
       <button class="hamburger" onclick="toggleSidebar()">
         <i data-lucide="menu"></i>
       </button>
-      <h2>Welcome,on your <span style="color: #4ea1ff">T.Nest!</span></h2>
+      <h2>Welcome,<%= username %> to<span style="color: #4ea1ff"> Your T.Nest!</span></h2>
       <button
         onclick="location.href='http://localhost:5000/'"
         style="
@@ -228,9 +228,10 @@
     <!-- Main Content -->
     <main>
       <div class="welcome" id="welcomeScreen">
-        <h1>👋 Hello!</h1>
+        <h1>👋 Hello <span style="color: #4ea1ff"><%= username %>!</span></h1>
         <p>Use the left menu to explore your dashboard sections.</p>
       </div>
+
 
       <section id="classes">
         <h2>📚 My Classes</h2>
