@@ -1,109 +1,112 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sign Up</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
-  </style>
-</head>
-<body class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#2c2f36] to-[#23262b] font-poppins text-[#f1f1f1]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/6ad00072de.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body>
+    <h2 class="title">Sign <span>Up</span> to T.Nestia</h2>
 
-  <h1 class="text-2xl mb-5 text-[#e0e0e0] font-semibold">
-    Sign <span class="text-[#4dabf7]">Up</span>
-  </h1>
-
-  <div class="bg-[#2f323a] p-8 rounded-[20px] shadow-[10px_10px_30px_#1d1f24] w-[320px]">
-
-    <form class="flex flex-col gap-y-4" action="/signup" method="post" novalidate>
-
-      <select
-        name="choices"
-        id="choices"
-        class="mb-4 px-4 py-3 rounded-lg bg-[#383c44] text-[#f0f0f0] shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="">Select your profession</option>
-        <option value="student">Student</option>
-        <option value="teacher">Teacher</option>
-        <option value="admin">Admin</option>
-      </select>
-
-      <input
-        type="text"
-        name="username"
-        placeholder="Enter your Name"
-        required
+    <div class="container">
+      <form
+        class="form active"
+        action="/signup"
+        method="post"
+        novalidate
         autocomplete="off"
-        class="w-full max-w-md px-5 py-3 text-gray-400 bg-[#2c2f36] rounded-3xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)] focus:outline-none placeholder-gray-400"
-      />
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Enter your Email"
-        required
-        autocomplete="off"
-        class="w-full max-w-md px-5 py-3 text-gray-400 bg-[#2c2f36] rounded-3xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)] focus:outline-none placeholder-gray-400"
-      />
-
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-        title="Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."
-        class="w-full max-w-md px-5 py-3 text-gray-400 bg-[#2c2f36] rounded-3xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)] focus:outline-none placeholder-gray-400"
-      />
-
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        required
-        class="w-full max-w-md px-5 py-3 text-gray-400 bg-[#2c2f36] rounded-3xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)] focus:outline-none placeholder-gray-400"
-      />
-
-      <button
-        type="submit"
-        class="mt-2 py-3 rounded-lg bg-[#383c44] text-white font-bold shadow-[6px_6px_10px_#1f2126,-6px_-6px_10px_#4c5058] hover:bg-[#4a4f58] transition-colors duration-300"
       >
-        Submit
-      </button>
-    </form>
+        <select
+          name="choices"
+          id="choices"
+          required
+          style="
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: #2a2a2a;
+            color: #fff;
+            box-shadow: inset 4px 4px 6px #1f1f1f, inset -4px -4px 6px #333333;
+          "
+        >
+          <option value="">Select your profession</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
 
-    <p class="text-center text-[#aaa] mt-6 text-sm">or</p>
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter your Name"
+          required
+          autocomplete="off"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your Email"
+          required
+          autocomplete="off"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          title="Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
 
-    <div class="flex justify-around mt-4">
-      <a href="#" class="social flex justify-center items-center w-10 h-10 rounded-full bg-[#383c44] text-white shadow-[6px_6px_10px_#1f2126,-6px_-6px_10px_#4c5058] text-xl transition-colors duration-200 hover:bg-[#4a4f58]">F</a>
-      <a href="#" class="social flex justify-center items-center w-10 h-10 rounded-full bg-[#383c44] text-white shadow-[6px_6px_10px_#1f2126,-6px_-6px_10px_#4c5058] text-xl transition-colors duration-200 hover:bg-[#4a4f58]">G</a>
-      <a href="#" class="social flex justify-center items-center w-10 h-10 rounded-full bg-[#383c44] text-white shadow-[6px_6px_10px_#1f2126,-6px_-6px_10px_#4c5058] text-xl transition-colors duration-200 hover:bg-[#4a4f58]">T</a>
+        <button type="submit" class="btn">
+          <i class="fas fa-user-plus"></i> Submit
+        </button>
+
+        <p class="or" style="margin-top: 15px">
+          Already have an account? <a class="link" href="/login">Login</a>
+        </p>
+
+        <div class="socials">
+          <a href="#" class="social" title="Sign up with Google"
+            ><i class="fab fa-google">G</i></a
+          >
+          <a href="#" class="social" title="Sign up with Facebook"
+            ><i class="fab fa-facebook-f">f</i></a
+          >
+          <a href="#" class="social" title="Sign up with Twitter"
+            ><i class="fab fa-twitter">t</i></a
+          >
+        </div>
+      </form>
     </div>
 
-    <!-- Added Login Button -->
-    <div class="mt-6 text-center">
-      <a href="http://localhost:5000/" 
-         class="inline-block px-6 py-3 bg-[#383c44] rounded-lg font-bold text-white shadow-[6px_6px_10px_#1f2126,-6px_-6px_10px_#4c5058] hover:bg-[#4a4f58] transition-colors duration-300">
-       Or Login
-      </a>
-    </div>
-  </div>
+    <script>
+      const form = document.querySelector("form");
+      const password = form.querySelector('input[name="password"]');
+      const confirmPassword = form.querySelector(
+        'input[name="confirmPassword"]'
+      );
 
-  <script>
-    const form = document.querySelector("form");
-    const password = form.querySelector('input[name="password"]');
-    const confirmPassword = form.querySelector('input[placeholder="Confirm Password"]');
-
-    form.addEventListener("submit", e => {
-      if (password.value !== confirmPassword.value) {
-        e.preventDefault();
-        alert("Passwords do not match. Please try again.");
-        confirmPassword.focus();
-      }
-    });
-  </script>
-
-</body>
+      form.addEventListener("submit", (e) => {
+        if (password.value !== confirmPassword.value) {
+          e.preventDefault();
+          alert("Passwords do not match. Please try again.");
+          confirmPassword.focus();
+        }
+      });
+    </script>
+  </body>
 </html>
