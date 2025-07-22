@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Dashboard | T.Nestia</title>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.onload = () => lucide.createIcons();
+  </script>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="p-6 flex justify-between items-center bg-gray-900 border-b border-gray-700">
+    <h1 class="text-3xl font-extrabold text-indigo-400 tracking-tight">T.Nestia - Teacher Dashboard</h1>
+    <nav class="space-x-4">
+      <a href="/dashboard" class="text-gray-300 hover:text-indigo-300 transition">Dashboard</a>
+      <button
+        onclick="location.href='http://localhost:5000/'"
+        style="
+          padding: 6px 10px;
+          border: none;
+          background: #333;
+          color: white;
+          border-radius: 5px;
+        "
+      >
+        Logout
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex flex-col items-center justify-center px-6 mt-16 text-center max-w-5xl mx-auto">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/2306/2306150.png" alt="Teacher Icon" class="w-32 mb-6 animate-pulse mx-auto" />
+
+    <h2 class="text-5xl font-extrabold mb-4 leading-tight">
+      Welcome, <span class="text-indigo-400"><%= username %></span> — <br />
+      Empowering <span class="text-indigo-400">Students</span> Through Teaching
+    </h2>
+
+    <p class="text-lg text-gray-400 max-w-3xl mb-8">
+      Your Teacher Dashboard at <strong class="text-white">T.Nestia</strong> helps you manage classes, upload resources, track assignments, and communicate effectively with students.
+    </p>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-16">
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Manage Classes clicked')">
+        <i data-lucide="book-open" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Manage Classes</h4>
+        <p class="text-gray-300 text-sm">Create, edit, and organize your classes and schedules.</p>
+      </div>
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Upload Materials clicked')">
+        <i data-lucide="upload-cloud" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Upload Materials</h4>
+        <p class="text-gray-300 text-sm">Share lecture notes, assignments, and important files with your students.</p>
+      </div>
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Assignment Submissions clicked')">
+        <i data-lucide="file-check" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Review Submissions</h4>
+        <p class="text-gray-300 text-sm">Monitor and grade assignments submitted by your students.</p>
+      </div>
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Announcements clicked')">
+        <i data-lucide="bell-ring" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Announcements</h4>
+        <p class="text-gray-300 text-sm">Broadcast important messages and deadlines to your classes.</p>
+      </div>
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Student Communication clicked')">
+        <i data-lucide="message-circle" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Student Communication</h4>
+        <p class="text-gray-300 text-sm">Chat with students individually or in groups for quick help and guidance.</p>
+      </div>
+
+      <div class="glass p-6 rounded-xl shadow-lg hover:scale-105 transform transition cursor-pointer" onclick="alert('Reports & Analytics clicked')">
+        <i data-lucide="bar-chart-2" class="text-indigo-400 w-10 h-10 mx-auto mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">Reports & Analytics</h4>
+        <p class="text-gray-300 text-sm">Track student performance and participation over time.</p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 p-4 text-center text-sm text-gray-500 border-t border-gray-700">
+    © 2025 <span class="text-indigo-300 font-semibold">T.Nestia</span> — Designed to Empower Education for All
+  </footer>
+
+</body>
+</html>

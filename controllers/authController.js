@@ -12,7 +12,10 @@ exports.signup = async (req, res) => {
     const data = {
         name: req.body.username,         // ✅ name (from input field)
         email: req.body.email,           // ✅ email (from input field)
-        password: req.body.password      // ✅ password (from input field)
+        password: req.body.password,
+    role: req.body.role
+       
+             // ✅ password (from input field)
     };
 
     // Check if a user with the same email already exists
@@ -42,21 +45,31 @@ exports.signup = async (req, res) => {
 // Handle user login
 exports.login = async (req, res) => {
     try {
-        // ✅ Find the user by email
         const user = await User.findOne({ email: req.body.email });
-
-        // If no user found, send error
         if (!user) return res.send("Username not found");
 
-        // ✅ Compare password with stored hashed password
         const isMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isMatch) return res.send("Wrong password");
 
-        // ✅ If successful login, render home and pass username to EJS view
-        res.render("home", {
+        // ✅ Check user role and redirect accordingly
+        if (user.role === 'teacher') {
+            return res.render("teacher", { username: user.name });
+        } else if (user.role === 'admin') {
+             const totalUsers = await User.countDocuments();
+            const totalTeachers = await User.countDocuments({ role: 'teacher' });
+            const totalStudents = await User.countDocuments({ role: 'student' });
+
+            const stats = {
+                totalUsers,
+                totalTeachers,
+                totalStudents
+            };
+            return res.render("admin", { username: user.name,stats });
+        } else {
+            return res.render("home", {
             username: user.name || user.email   // <-- ✅ Pass data to home.ejs
         });
-
+    }
     } catch (err) {
         res.send("Error occurred");
     }

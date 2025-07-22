@@ -15,6 +15,11 @@ const Loginschema = new mongoose.Schema({
 
   // Define 'password' field: must be a string and is required
   password: { type: String, required: true },
+  role: { 
+        type: String,
+        enum: ['student', 'teacher', 'admin'],  // Limit possible values
+        required: true
+    }
 });
 
 // Create a model named 'users' using the schema above
