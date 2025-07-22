@@ -1,3 +1,4 @@
+
 # T.Nestia — A Comprehensive Digital Hub for Students & Teachers
 
 T.Nestia is a full-stack web application designed to facilitate seamless interaction between students, teachers, and admins in an educational environment. It combines role-based access control, resource sharing, assignment management, and communication tools into one cohesive platform. This project aims to empower users by providing an intuitive, secure, and efficient digital learning experience.
@@ -168,3 +169,19 @@ GitHub: [https://github.com/yourusername](https://github.com/yourusername)
 ---
 
 *Thank you for exploring T.Nestia — Empowering education through technology!*
+
+```
+
+---
+
+### Where to Put Screenshots?
+
+Put your screenshots in the `/public` folder since it’s already used for static files in your project.
+
+Example:
+
+- `public/screenshot1.jpg` — Welcome/Landing page
+- `public/login_page.jpg` — Login page
+- `public/admin_dashboard.jpg` — Admin dashboard
+
+
