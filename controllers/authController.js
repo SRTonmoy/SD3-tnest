@@ -45,12 +45,18 @@ exports.signup = async (req, res) => {
 // Handle user login
 exports.login = async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) return res.send("Username not found");
+        const email = req.body.email.toLowerCase();
+const user = await User.findOne({ email });
+    if (!user) {
+      // Render login page again with error message
+      return res.render("login", { error: "Invalid email or password" });
+    }
 
-        const isMatch = await bcrypt.compare(req.body.password, user.password);
-        if (!isMatch) return res.send("Wrong password");
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) {
+      return res.render("login", { error: "Invalid email or password", email: email });
 
+    }
         // ✅ Check user role and redirect accordingly
         if (user.role === 'teacher') {
             return res.render("teacher", { username: user.name });

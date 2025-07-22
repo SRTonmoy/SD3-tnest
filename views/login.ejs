@@ -21,6 +21,23 @@
       </div>
 
       <form id="loginForm" class="form active" action="/login" method="post">
+        <% if (typeof error !== 'undefined') { %>
+  <p id="errorMsg" style="color: red; margin-bottom: 1rem; font-weight: bold;">
+    <%= error %>
+  </p>
+
+  <script>
+    // Hide the error message after 4 seconds
+    setTimeout(() => {
+      const errorElem = document.getElementById('errorMsg');
+      if (errorElem) {
+        errorElem.style.transition = 'opacity 0.5s ease';
+        errorElem.style.opacity = '0';
+        setTimeout(() => errorElem.remove(), 500); // remove from DOM after fade out
+      }
+    }, 4000);
+  </script>
+<% } %>
         <input
           type="email"
           name="email"
@@ -70,9 +87,6 @@
         </div>
       </form>
 
-      <!-- Register Form -->
-     
-
-    <script src="script.js"></script>
+      
   </body>
 </html>
