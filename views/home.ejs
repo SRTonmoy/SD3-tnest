@@ -152,6 +152,38 @@
         transform: scale(0.98);
         box-shadow: 0 3px 6px #0003;
       }
+      /* dashboard section */
+      .dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: #2d3748;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  color: #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.welcome-card {
+  background: #1a202c;
+  padding: 1.2rem;
+  border-left: 5px solid #6366f1;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  color: #f7fafc;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 
       @media (max-width: 768px) {
         .sidebar {
@@ -185,10 +217,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-      <!-- <a href="#" onclick="showSection('classes')"
-        ><i data-lucide="book"></i> Dashboard
-        <span class="dashboard">Upload & Submit</span></a
-      > -->
+      <a href="#" onclick="showSection('dashboard')"
+        ><i data-lucide="layout-dashboard"></i> Dashboard
+        <span class="tooltip">Upload & Submit</span></a
+      >
       <a href="#" onclick="showSection('classes')"
         ><i data-lucide="book"></i> My Classes
         <span class="tooltip">Upload & Submit</span></a
@@ -231,6 +263,44 @@
         <h1>👋 Hello <span style="color: #4ea1ff"><%= username %>!</span></h1>
         <p>Use the left menu to explore your dashboard sections.</p>
       </div>
+
+
+      <section id="dashboard" class="active">
+  <h2>📊 Dashboard Overview</h2>
+
+  <div class="dashboard-grid">
+    <!-- Quick Stats -->
+    <div class="stat-card">
+      <h3>Total Classes</h3>
+      <p>5 Active</p>
+    </div>
+    <div class="stat-card">
+      <h3>Assignments Due</h3>
+      <p>2 Pending</p>
+    </div>
+    <div class="stat-card">
+      <h3>Announcements</h3>
+      <p>3 New</p>
+    </div>
+    <div class="stat-card">
+      <h3>Messages</h3>
+      <p>1 Unread</p>
+    </div>
+  </div>
+
+  <!-- Welcome Card -->
+  <div class="welcome-card">
+    <h3>👋 Welcome back, <span id="userName"><%= username %></span>!</h3>
+    <p>Stay on top of your schedule, submissions, and class discussions right here.</p>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="dashboard-actions">
+    <button class="action-btn" onclick="uploadFile()">Upload Material</button>
+    <button class="action-btn" onclick="openPostModal()">Post Announcement</button>
+    <button class="action-btn" onclick="alert('💬 Message sent!')">Message Student/Teacher</button>
+  </div>
+</section>
 
 
       <section id="classes">
