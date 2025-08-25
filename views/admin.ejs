@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Dashboard | T.Nestia</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col font-sans">
 
   <!-- Header -->
-  <header class="flex items-center justify-between bg-gray-800 p-4 shadow-md">
-    <h1 class="text-xl font-semibold">🛠️ Admin Dashboard</h1>
-    <div>
-      <span class="mr-4">Welcome, <%= username %></span>
+  <header class="flex items-center justify-between bg-gray-800 p-4 shadow-lg">
+    <h1 class="text-2xl font-bold flex items-center gap-2">
+      <span>🛠️</span> Admin Dashboard
+    </h1>
+    <div class="flex items-center gap-4">
+      <span class="text-gray-300">Welcome, <%= username %></span>
       <button
         onclick="location.href='http://localhost:5000/'"
-        style="
-          padding: 6px 10px;
-          border: none;
-          background: #333;
-          color: white;
-          border-radius: 5px;
-        "
+        class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-all duration-300"
       >
         Logout
       </button>
@@ -30,58 +27,77 @@
 
   <!-- Main content -->
   <main class="flex-grow p-6 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-
-      <div class="bg-gray-700 rounded-lg p-6 shadow-lg text-center">
-        <h2 class="text-lg font-semibold mb-2">Total Users</h2>
-        <p class="text-3xl font-bold"><%= stats.totalUsers %></p>
+    
+    <!-- Stats cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+      
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
+        <div class="flex items-center gap-3">
+          <span data-feather="users" class="text-blue-500"></span>
+          <p class="text-gray-400 uppercase text-sm">Total Users</p>
+        </div>
+        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalUsers %></p>
       </div>
 
-      <div class="bg-gray-700 rounded-lg p-6 shadow-lg text-center">
-        <h2 class="text-lg font-semibold mb-2">Active Students</h2>
-        <p class="text-3xl font-bold"><%= stats.activeStudents %></p>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
+        <div class="flex items-center gap-3">
+          <span data-feather="book" class="text-green-500"></span>
+          <p class="text-gray-400 uppercase text-sm">Total Students</p>
+        </div>
+        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalStudents %></p>
       </div>
 
-      <div class="bg-gray-700 rounded-lg p-6 shadow-lg text-center">
-        <h2 class="text-lg font-semibold mb-2">Active Teachers</h2>
-        <p class="text-3xl font-bold"><%= stats.activeTeachers %></p>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
+        <div class="flex items-center gap-3">
+          <span data-feather="user-check" class="text-yellow-500"></span>
+          <p class="text-gray-400 uppercase text-sm">Total Teachers</p>
+        </div>
+        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalTeachers %></p>
       </div>
 
-      <div class="bg-gray-700 rounded-lg p-6 shadow-lg text-center">
-        <h2 class="text-lg font-semibold mb-2">Pending Approvals</h2>
-        <p class="text-3xl font-bold"><%= stats.pendingApprovals %></p>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
+        <div class="flex items-center gap-3">
+          <span data-feather="clock" class="text-red-500"></span>
+          <p class="text-gray-400 uppercase text-sm">Pending Approvals</p>
+        </div>
+        <p class="mt-3 text-3xl font-bold text-white"><%= stats.pendingApprovals || 0 %></p>
       </div>
 
     </div>
 
-    <div class="flex flex-wrap gap-4">
+    <!-- Action buttons -->
+    <div class="flex flex-wrap gap-6">
       <button
-        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded shadow"
+        class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
         onclick="alert('👥 Manage Users clicked!')"
       >
-        Manage Users
+        <span data-feather="users"></span> Manage Users
       </button>
 
       <button
-        class="bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded shadow"
+        class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
         onclick="alert('📊 View Reports clicked!')"
       >
-        View Reports
+        <span data-feather="bar-chart-2"></span> View Reports
       </button>
 
       <button
-        class="bg-yellow-600 hover:bg-yellow-700 text-white px-5 py-3 rounded shadow"
+        class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
         onclick="alert('⚙️ System Settings clicked!')"
       >
-        System Settings
+        <span data-feather="settings"></span> System Settings
       </button>
     </div>
+
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 p-4 text-center text-sm text-gray-400">
+  <footer class="bg-gray-800 p-4 text-center text-sm text-gray-400 mt-auto">
     &copy; 2025 T.Nestia. All rights reserved.
   </footer>
 
+  <script>
+    feather.replace()
+  </script>
 </body>
 </html>

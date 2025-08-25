@@ -43,9 +43,7 @@
         box-shadow: 5px 0 15px #0005;
       }
 
-      .sidebar.show {
-        left: 0;
-      }
+      .sidebar.show { left: 0; }
 
       .sidebar a {
         display: flex;
@@ -58,9 +56,7 @@
         position: relative;
       }
 
-      .sidebar a:hover {
-        background: #2a2a3a;
-      }
+      .sidebar a:hover { background: #2a2a3a; }
 
       .sidebar a .tooltip {
         position: absolute;
@@ -74,9 +70,7 @@
         display: none;
       }
 
-      .sidebar a:hover .tooltip {
-        display: block;
-      }
+      .sidebar a:hover .tooltip { display: block; }
 
       .logout-btn {
         position: absolute;
@@ -91,9 +85,7 @@
         transition: margin-left 0.3s ease;
       }
 
-      .sidebar.show ~ main {
-        margin-left: 220px;
-      }
+      .sidebar.show ~ main { margin-left: 220px; }
 
       section {
         display: none;
@@ -110,24 +102,12 @@
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
-      .welcome {
-        text-align: center;
-        padding: 100px 20px;
-      }
-
-      .welcome h1 {
-        font-size: 2.5rem;
-      }
+      .welcome { text-align: center; padding: 100px 20px; }
+      .welcome h1 { font-size: 2.5rem; }
 
       .action-btn {
         background: #4ea1ff;
@@ -141,57 +121,90 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 10px #0003;
       }
+      .action-btn:hover { background: #3583d4; box-shadow: 0 6px 14px #0005; transform: translateY(-2px); }
+      .action-btn:active { transform: scale(0.98); box-shadow: 0 3px 6px #0003; }
 
-      .action-btn:hover {
-        background: #3583d4;
-        box-shadow: 0 6px 14px #0005;
-        transform: translateY(-2px);
-      }
-
-      .action-btn:active {
-        transform: scale(0.98);
-        box-shadow: 0 3px 6px #0003;
-      }
-      /* dashboard section */
+      /* Dashboard */
       .dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
 
-.stat-card {
-  background: #2d3748;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  color: #e2e8f0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
+      .stat-card {
+        background: #2d3748;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        color: #e2e8f0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      }
 
-.welcome-card {
-  background: #1a202c;
-  padding: 1.2rem;
-  border-left: 5px solid #6366f1;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  color: #f7fafc;
-}
+      .welcome-card {
+        background: #1a202c;
+        padding: 1.2rem;
+        border-left: 5px solid #6366f1;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        color: #f7fafc;
+      }
 
-.dashboard-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+      .dashboard-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+      /* Progress bars */
+      .progress {
+        background: #12121a;
+        border-radius: 8px;
+        height: 10px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      .progress > div {
+        background: #4ea1ff;
+        height: 100%;
+        width: 0%;
+        transition: width 0.6s ease;
+      }
+
+      /* Tables */
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #1a1a1f;
+        color: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .table th, .table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #2a2a33;
+        text-align: left;
+        font-size: 14px;
+      }
+      .table th { background: #15151b; color: #9aa3b2; }
+      .badge {
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        background: #2b2b38;
+        border: 1px solid #3a3a4a;
+      }
+      .badge.success { background: #1d3b2a; border-color: #2f6f4a; color: #97e0b3; }
+      .badge.warn { background: #3b2b1d; border-color: #6f4a2f; color: #f2c896; }
+      .badge.info { background: #1d2c3b; border-color: #2f4a6f; color: #98c8f7; }
+
+      /* Cards inside sections */
+      .card {
+        background: #1a202c;
+        border-radius: 10px;
+        padding: 12px;
+        margin: 10px 0;
+      }
 
       @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-        }
-        .sidebar.show ~ main {
-          margin-left: 0;
-        }
+        .sidebar { width: 100%; }
+        .sidebar.show ~ main { margin-left: 0; }
       }
     </style>
   </head>
@@ -200,16 +213,10 @@
       <button class="hamburger" onclick="toggleSidebar()">
         <i data-lucide="menu"></i>
       </button>
-      <h2>Welcome,<%= username %> to<span style="color: #4ea1ff"> Your T.Nest!</span></h2>
+      <h2>Welcome, <%= username %> to<span style="color: #4ea1ff"> Your T.Nest!</span></h2>
       <button
         onclick="location.href='http://localhost:5000/'"
-        style="
-          padding: 6px 10px;
-          border: none;
-          background: #333;
-          color: white;
-          border-radius: 5px;
-        "
+        style="padding: 6px 10px; border: none; background: #333; color: white; border-radius: 5px;"
       >
         Logout
       </button>
@@ -217,43 +224,41 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-      <a href="#" onclick="showSection('dashboard')"
-        ><i data-lucide="layout-dashboard"></i> Dashboard
-        <span class="tooltip">Upload & Submit</span></a
-      >
-      <a href="#" onclick="showSection('classes')"
-        ><i data-lucide="book"></i> My Classes
-        <span class="tooltip">Upload & Submit</span></a
-      >
-      <a href="#" onclick="showSection('announcements')"
-        ><i data-lucide="megaphone"></i> View Announcements</a
-      >
-      <a href="#" onclick="showSection('courses')"
-        ><i data-lucide="file-text"></i> Course Details</a
-      >
-      <a href="#" onclick="showSection('schedule')"
-        ><i data-lucide="calendar"></i> Schedule</a
-      >
-      <a href="#" onclick="showSection('documents')"
-        ><i data-lucide="file"></i> Document Access</a
-      >
-      <a href="#" onclick="showSection('anonymous')"
-        ><i data-lucide="user"></i> Anonymous Post</a
-      >
-      <a href="#" onclick="showSection('cp')"
-        ><i data-lucide="code"></i> Competitive Programming</a
-      >
-      <a href="#" onclick="showSection('events')"
-        ><i data-lucide="trophy"></i> Participate in Event</a
-      >
-      <a href="#" onclick="showSection('report')"
-        ><i data-lucide="alert-triangle"></i> Report System Failure</a
-      >
+      <a href="#" onclick="showSection('dashboard')">
+        <i data-lucide="layout-dashboard"></i> Dashboard
+        <span class="tooltip">Overview</span>
+      </a>
+      <a href="#" onclick="showSection('classes')">
+        <i data-lucide="book"></i> My Classes
+        <span class="tooltip">Upload & Submit</span>
+      </a>
+      <a href="#" onclick="showSection('announcements')">
+        <i data-lucide="megaphone"></i> View Announcements
+      </a>
+      <a href="#" onclick="showSection('courses')">
+        <i data-lucide="file-text"></i> Course Details
+      </a>
+      <a href="#" onclick="showSection('schedule')">
+        <i data-lucide="calendar"></i> Schedule
+      </a>
+      <a href="#" onclick="showSection('documents')">
+        <i data-lucide="file"></i> Document Access
+      </a>
+      <a href="#" onclick="showSection('anonymous')">
+        <i data-lucide="user"></i> Anonymous Post
+      </a>
+      <a href="#" onclick="showSection('cp')">
+        <i data-lucide="code"></i> Competitive Programming
+      </a>
+      <a href="#" onclick="showSection('events')">
+        <i data-lucide="trophy"></i> Participate in Event
+      </a>
+      <a href="#" onclick="showSection('report')">
+        <i data-lucide="alert-triangle"></i> Report System Failure
+      </a>
 
       <div class="logout-btn">
-        <a href="http://localhost:5000/"
-          ><i data-lucide="log-out"></i> Logout</a
-        >
+        <a href="http://localhost:5000/"><i data-lucide="log-out"></i> Logout</a>
       </div>
     </div>
 
@@ -264,296 +269,620 @@
         <p>Use the left menu to explore your dashboard sections.</p>
       </div>
 
-
+      <!-- DASHBOARD -->
       <section id="dashboard" class="active">
-  <h2>📊 Dashboard Overview</h2>
+        <h2>📊 Dashboard Overview</h2>
 
-  <div class="dashboard-grid">
-    <!-- Quick Stats -->
-    <div class="stat-card">
-      <h3>Total Classes</h3>
-      <p>5 Active</p>
-    </div>
-    <div class="stat-card">
-      <h3>Assignments Due</h3>
-      <p>2 Pending</p>
-    </div>
-    <div class="stat-card">
-      <h3>Announcements</h3>
-      <p>3 New</p>
-    </div>
-    <div class="stat-card">
-      <h3>Messages</h3>
-      <p>1 Unread</p>
-    </div>
-  </div>
+        <div class="dashboard-grid">
+          <div class="stat-card">
+            <h3>Total Classes</h3>
+            <p>5 Active</p>
+          </div>
+          <div class="stat-card">
+            <h3>Assignments Due</h3>
+            <p>2 Pending</p>
+          </div>
+          <div class="stat-card">
+            <h3>Announcements</h3>
+            <p>3 New</p>
+          </div>
+          <div class="stat-card">
+            <h3>Messages</h3>
+            <p>1 Unread</p>
+          </div>
+          <div class="stat-card">
+            <h3>Attendance</h3>
+            <div class="progress"><div id="attBar" style="width: 0%"></div></div>
+            <small id="attText">0%</small>
+          </div>
+          <div class="stat-card">
+            <h3>GPA Progress</h3>
+            <div class="progress"><div id="gpaBar" style="width: 0%"></div></div>
+            <small id="gpaText">0.00 / 4.00</small>
+          </div>
+        </div>
 
-  <!-- Welcome Card -->
-  <div class="welcome-card">
-    <h3>👋 Welcome back, <span id="userName"><%= username %></span>!</h3>
-    <p>Stay on top of your schedule, submissions, and class discussions right here.</p>
-  </div>
+        <div class="welcome-card">
+          <h3>👋 Welcome back, <span id="userName"><%= username %></span>!</h3>
+          <p>Stay on top of your schedule, submissions, and class discussions right here.</p>
+        </div>
 
-  <!-- Action Buttons -->
-  <div class="dashboard-actions">
-    <button class="action-btn" onclick="uploadFile()">Upload Material</button>
-    <button class="action-btn" onclick="openPostModal()">Post Announcement</button>
-    <button class="action-btn" onclick="alert('💬 Message sent!')">Message Student/Teacher</button>
-  </div>
-</section>
+        <div class="dashboard-actions">
+          <button class="action-btn" onclick="uploadFile()">Upload Material</button>
+          <button class="action-btn" onclick="openPostModal()">Post Announcement</button>
+          <button class="action-btn" onclick="alert('💬 Message sent!')">Message Student/Teacher</button>
+        </div>
+      </section>
 
-
+      <!-- CLASSES -->
       <section id="classes">
         <h2>📚 My Classes</h2>
-        <button class="action-btn" onclick="uploadFile()">
-          Upload Attachment
-        </button>
-        <button class="action-btn" onclick="openPostModal()">
-          Create New Post
-        </button>
-        <button class="action-btn" onclick="alert('📤 Assignment submitted!')">
-          Submit Assignment
-        </button>
+        <div id="class-list" class="card"></div>
+        <div>
+          <button class="action-btn" onclick="uploadFile()">Upload Attachment</button>
+          <button class="action-btn" onclick="openPostModal()">Create New Post</button>
+          <button class="action-btn" onclick="alert('📤 Assignment submitted!')">Submit Assignment</button>
+        </div>
       </section>
 
+      <!-- ANNOUNCEMENTS -->
       <section id="announcements">
-        <h2>📢 View Announcements</h2>
-        <button
-          class="action-btn"
-          onclick="alert('🔄 Announcements refreshed')"
-        >
-          Refresh
-        </button>
+        <h2>Announcements</h2>
+        <div class="card">
+          <label for="filterTeacher">Filter by Teacher:&nbsp;</label>
+          <select id="filterTeacher" onchange="refreshAnnouncements()">
+            <option value="all">All</option>
+            <option value="Rahman">Rahman</option>
+            <option value="Hasan">Hasan</option>
+            <option value="Amin">Amin</option>
+          </select>
+          <label style="margin-left:12px;">
+            <input type="checkbox" id="showPinned" checked onchange="refreshAnnouncements()" />
+            Show pinned first
+          </label>
+        </div>
+        <div id="announcement-list" style="margin-top: 15px;"></div>
+        <button class="action-btn" onclick="refreshAnnouncements()">Refresh</button>
       </section>
 
+      <!-- COURSES -->
       <section id="courses">
         <h2>📋 Course Details</h2>
-        <ul>
-          <li>Add/Drop Deadline: August 20, 2025</li>
-          <li>Last Date of Registration: August 15, 2025</li>
-        </ul>
+        <ul id="course-ul" class="card" style="list-style: disc; padding-left: 20px;"></ul>
       </section>
 
+      <!-- SCHEDULE -->
       <section id="schedule">
         <h2>🗓️ Schedule</h2>
-        <button
-          class="action-btn"
-          onclick="alert('📅 Showing class routine...')"
-        >
-          View Class Routine
-        </button>
-        <button
-          class="action-btn"
-          onclick="alert('📥 Calendar downloading...')"
-        >
-          Download Yearly Calendar
-        </button>
-        <button class="action-btn" onclick="alert('📍 Seat plan loading...')">
-          View Seat Plan
-        </button>
+        <div class="card">
+          <button class="action-btn" onclick="alert('📅 Showing class routine...')">View Class Routine</button>
+          <button class="action-btn" onclick="alert('📥 Calendar downloading...')">Download Yearly Calendar</button>
+          <button class="action-btn" onclick="alert('📍 Seat plan loading...')">View Seat Plan</button>
+          <button class="action-btn" onclick="alert('📝 Showing exam schedule...')">Exam Schedule</button>
+          <button class="action-btn" onclick="alert('🔔 Reminder set successfully')">Set Reminder</button>
+        </div>
+        <h3>Upcoming Exams</h3>
+        <div id="exam-schedule" class="card"></div>
       </section>
 
+      <!-- DOCUMENTS -->
       <section id="documents">
         <h2>📂 Document Access</h2>
-        <button
-          class="action-btn"
-          onclick="alert('🆔 ID Card request submitted')"
-        >
-          ID Card Lost
-        </button>
-        <button
-          class="action-btn"
-          onclick="alert('📜 Transcript request submitted')"
-        >
-          Transcript Need
-        </button>
-        <button class="action-btn" onclick="downloadTranscript()">
-          Download Semester Transcript
-        </button>
+        <div>
+          <button class="action-btn" onclick="createDocRequest('ID Card Lost')">ID Card Lost</button>
+          <button class="action-btn" onclick="createDocRequest('Transcript Request')">Transcript Need</button>
+          <button class="action-btn" onclick="downloadTranscript()">Download Semester Transcript</button>
+          <button class="action-btn" onclick="uploadFile(); createDocRequest('Upload Missing Document')">Upload Missing Document</button>
+        </div>
+        <h3 style="margin-top:12px;">Your Requests</h3>
+        <div id="doc-requests" class="card"></div>
       </section>
 
+      <!-- ANONYMOUS -->
       <section id="anonymous">
         <h2>💬 Anonymous Post</h2>
-        <textarea
-          rows="4"
-          style="
-            width: 100%;
-            background: #1a1a1f;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 10px;
-          "
-        ></textarea>
+        <textarea id="anonInput" rows="4" style="width: 100%; background: #1a1a1f; color: white; border: none; border-radius: 8px; padding: 10px;"></textarea>
         <br /><br />
         <button class="action-btn" onclick="sendAnonymousPost()">Send</button>
+
+        <h3 style="margin-top:20px;">📜 Previous Anonymous Posts</h3>
+        <ul id="anon-list" style="font-size:14px; color:#ccc; padding-left:18px;"></ul>
       </section>
 
+      <!-- COMPETITIVE PROGRAMMING -->
       <section id="cp">
         <h2>👨‍💻 Competitive Programming</h2>
-        <button
-          class="action-btn"
-          onclick="alert('✅ You have enrolled in Competitive Programming')"
-        >
-          Enroll Now
-        </button>
+        <div>
+          <button class="action-btn" onclick="enrollCP()">Enroll Now</button>
+          <button class="action-btn" onclick="alert('📊 Loading leaderboard...')">View Leaderboard</button>
+          <button class="action-btn" onclick="alert('💡 Opening practice problems...')">Practice Problems</button>
+        </div>
+        <div class="card">
+          <h3>Leaderboard</h3>
+          <div id="cp-leaderboard"></div>
+        </div>
+        <div class="card">
+          <h3>Practice Problems</h3>
+          <ul id="cp-problems" style="padding-left:18px;"></ul>
+        </div>
       </section>
 
+      <!-- EVENTS -->
       <section id="events">
         <h2>🏆 Participate in Event</h2>
-        <button class="action-btn" onclick="alert('⚽ Enrolled for Football')">
-          Football
-        </button>
-        <button class="action-btn" onclick="alert('🏏 Enrolled for Cricket')">
-          Cricket
-        </button>
-        <button class="action-btn" onclick="alert('🏸 Enrolled for Badminton')">
-          Badminton
-        </button>
+        <div>
+          <button class="action-btn" onclick="enrollEvent('Football')">Football</button>
+          <button class="action-btn" onclick="enrollEvent('Cricket')">Cricket</button>
+          <button class="action-btn" onclick="enrollEvent('Badminton')">Badminton</button>
+        </div>
+        <h3 style="margin-top:20px;">📋 Registered Events</h3>
+        <div id="registered-events" class="card"></div>
       </section>
 
+      <!-- REPORT -->
       <section id="report">
         <h2>🚨 Report System Failure</h2>
-        <button class="action-btn" onclick="reportIssue('AC Not Working')">
-          AC Not Working
-        </button>
-        <button
-          class="action-btn"
-          onclick="reportIssue('Projector Not Working')"
-        >
-          Projector Not Working
-        </button>
-        <button
-          class="action-btn"
-          onclick="reportIssue('Computer Not Working')"
-        >
-          Computer Not Working
-        </button>
+
+        <div class="card" style="display:grid; gap:8px;">
+          <label>
+            Issue Type:
+            <select id="issueType">
+              <option>AC Not Working</option>
+              <option>Projector Not Working</option>
+              <option>Computer Not Working</option>
+              <option>Network / Wi-Fi Down</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Location / Room:
+            <input id="issueLocation" type="text" placeholder="e.g., Lab-302" style="width:100%; padding:8px; border-radius:8px; border:none; background:#12121a; color:#fff;">
+          </label>
+          <label>
+            Description (optional):
+            <textarea id="issueDesc" rows="3" style="width:100%; padding:8px; border-radius:8px; border:none; background:#12121a; color:#fff;"></textarea>
+          </label>
+          <button class="action-btn" onclick="submitReport()">Submit Report</button>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button class="action-btn" onclick="quickReport('AC Not Working')">AC Not Working</button>
+          <button class="action-btn" onclick="quickReport('Projector Not Working')">Projector Not Working</button>
+          <button class="action-btn" onclick="quickReport('Computer Not Working')">Computer Not Working</button>
+        </div>
+
+        <h3 style="margin-top:16px;">Your Reports</h3>
+        <div id="report-list" class="card"></div>
       </section>
     </main>
 
     <!-- Hidden File Input -->
-    <input
-      type="file"
-      id="fileUploader"
-      style="display: none"
-      onchange="handleUpload()"
-    />
+    <input type="file" id="fileUploader" style="display: none" onchange="handleUpload()" />
 
     <!-- Create Post Modal -->
     <div
       id="postModal"
       style="
         display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
+        position: fixed; top: 50%; left: 50%;
         transform: translate(-50%, -50%);
-        background: #1a1a1f;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px #0008;
-        z-index: 2000;
+        background: #1a1a1f; padding: 20px; border-radius: 10px;
+        box-shadow: 0 0 10px #0008; z-index: 2000;
       "
     >
       <h3 style="margin-top: 0">✍️ Create New Post</h3>
       <textarea
         id="postContent"
         rows="5"
-        style="
-          width: 100%;
-          padding: 10px;
-          border-radius: 5px;
-          background: #2b2b38;
-          color: white;
-          border: none;
-        "
-      ></textarea
-      ><br /><br />
+        style="width: 100%; padding: 10px; border-radius: 5px; background: #2b2b38; color: white; border: none;"
+      ></textarea><br /><br />
       <button class="action-btn" onclick="submitPost()">Submit Post</button>
       <button class="action-btn" onclick="closePostModal()">Cancel</button>
     </div>
 
     <script>
-  lucide.createIcons();
+      lucide.createIcons();
 
-  function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("show");
-  }
-
-  function showSection(id) {
-    document.getElementById("welcomeScreen").style.display = "none";
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => section.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-    document.getElementById("sidebar").classList.remove("show");
-  }
-
-  function uploadFile() {
-    document.getElementById("fileUploader").click();
-  }
-
-  function handleUpload() {
-    const file = document.getElementById("fileUploader").files[0];
-    if (file) {
-      alert(`✅ Uploaded: ${file.name}`);
-    }
-  }
-
-  function openPostModal() {
-    document.getElementById("postModal").style.display = "block";
-  }
-
-  function closePostModal() {
-    document.getElementById("postModal").style.display = "none";
-  }
-
-  function submitPost() {
-    const content = document.getElementById("postContent").value.trim();
-    if (content) {
-      alert("📝 Post Submitted:\n" + content);
-      closePostModal();
-    } else {
-      alert("⚠️ Post cannot be empty.");
-    }
-  }
-
-  function sendAnonymousPost() {
-    const message = document
-      .querySelector("#anonymous textarea")
-      .value.trim();
-    if (message) {
-      alert("✅ Anonymous post submitted.");
-    } else {
-      alert("⚠️ Empty message not allowed.");
-    }
-  }
-
-  function downloadTranscript() {
-    alert(
-      "📄 Download started (dummy). You can integrate real file later."
-    );
-  }
-
-  function reportIssue(issue) {
-    alert(`🔧 Reported: ${issue}`);
-  }
-
-  // Close sidebar when clicking outside sidebar or hamburger button
-  document.addEventListener("click", function(event) {
-    const sidebar = document.getElementById("sidebar");
-    const hamburger = document.querySelector(".hamburger");
-
-    const sidebarIsOpen = sidebar.classList.contains("show");
-
-    if (sidebarIsOpen) {
-      if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-        sidebar.classList.remove("show");
+      /* ---------- UI BASICS ---------- */
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("show");
       }
-    }
-  });
-</script>
 
+      function showSection(id) {
+        document.getElementById("welcomeScreen").style.display = "none";
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section) => section.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        document.getElementById("sidebar").classList.remove("show");
+      }
+
+      // Close sidebar on outside click (mobile UX)
+      document.addEventListener("click", function(event) {
+        const sidebar = document.getElementById("sidebar");
+        const hamburger = document.querySelector(".hamburger");
+        const sidebarIsOpen = sidebar.classList.contains("show");
+        if (sidebarIsOpen) {
+          if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+            sidebar.classList.remove("show");
+          }
+        }
+      });
+
+      function uploadFile() {
+        document.getElementById("fileUploader").click();
+      }
+      function handleUpload() {
+        const file = document.getElementById("fileUploader").files[0];
+        if (file) alert(`✅ Uploaded: ${file.name}`);
+      }
+
+      function openPostModal() {
+        document.getElementById("postModal").style.display = "block";
+      }
+      function closePostModal() {
+        document.getElementById("postModal").style.display = "none";
+      }
+      function submitPost() {
+        const content = document.getElementById("postContent").value.trim();
+        if (content) {
+          alert("📝 Post Submitted:\n" + content);
+          closePostModal();
+        } else {
+          alert("⚠️ Post cannot be empty.");
+        }
+      }
+
+      function downloadTranscript() {
+        alert("📄 Download started (dummy). You can integrate real file later.");
+      }
+
+      /* ---------- DASHBOARD DYNAMIC ---------- */
+      function setDashboardStats() {
+        const attendance = 85; // %
+        const gpa = 3.6; // /4
+
+        document.getElementById("attBar").style.width = attendance + "%";
+        document.getElementById("attText").innerText = attendance + "%";
+
+        const gpaPercent = Math.round((gpa / 4) * 100);
+        document.getElementById("gpaBar").style.width = gpaPercent + "%";
+        document.getElementById("gpaText").innerText = gpa.toFixed(2) + " / 4.00";
+      }
+
+      /* ---------- CLASSES ---------- */
+      const classes = [
+        { code: "CSE-3101", name: "Database Systems", teacher: "Dr. Rahman", time: "Sun 10:00", liveLink: "#", recordingLink: "#" },
+        { code: "CSE-3203", name: "Software Engineering", teacher: "Mr. Hasan", time: "Tue 12:00", liveLink: "#", recordingLink: "#" },
+        { code: "MAT-2201", name: "Discrete Math", teacher: "Ms. Amin", time: "Thu 09:00", liveLink: "#", recordingLink: "#" },
+      ];
+      function renderClasses() {
+        const container = document.getElementById("class-list");
+        let html = `
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Code</th><th>Course</th><th>Teacher</th><th>Time</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        classes.forEach(c => {
+          html += `
+            <tr>
+              <td>${c.code}</td>
+              <td>${c.name}</td>
+              <td>${c.teacher}</td>
+              <td>${c.time}</td>
+              <td>
+                <button class="action-btn" onclick="alert('📺 Joining ${c.name} live...')">Join Live</button>
+                <button class="action-btn" onclick="alert('🎥 Opening recordings for ${c.name}...')">Recordings</button>
+              </td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+
+      /* ---------- ANNOUNCEMENTS (filter + pinned) ---------- */
+      let announcements = [
+        { date: "Aug 20, 2025", title: "Midterm Exam Notice", description: "Midterm exams start from Sep 1. Check schedule.", teacher: "Rahman", pinned: true },
+        { date: "Aug 18, 2025", title: "Assignment Submission", description: "Submit DBMS assignment by Aug 25 via My Classes.", teacher: "Hasan", pinned: false },
+        { date: "Aug 15, 2025", title: "New Course Materials", description: "New SE lecture slides uploaded.", teacher: "Hasan", pinned: false },
+        { date: "Aug 12, 2025", title: "Lab Session Update", description: "Lab shifted to Wed 3PM for this week.", teacher: "Amin", pinned: false },
+      ];
+
+      function loadAnnouncements() {
+        const teacherFilter = document.getElementById("filterTeacher").value;
+        const showPinnedFirst = document.getElementById("showPinned").checked;
+        let items = announcements.slice();
+
+        if (teacherFilter !== "all") {
+          items = items.filter(a => a.teacher === teacherFilter);
+        }
+        if (showPinnedFirst) {
+          items.sort((a, b) => (b.pinned === true) - (a.pinned === true));
+        }
+
+        const list = document.getElementById("announcement-list");
+        list.innerHTML = "";
+        items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+            <h4 style="margin:0; color:#4ea1ff;">${item.title} ${item.pinned ? '<span class="badge info">Pinned</span>' : ''}</h4>
+            <small style="color:#9aa3b2;">${item.date} · By ${item.teacher}</small>
+            <p style="margin:8px 0 0 0; font-size:14px;">${item.description}</p>
+          `;
+          list.appendChild(div);
+        });
+        if (!items.length) {
+          list.innerHTML = `<div class="card"><em>No announcements found.</em></div>`;
+        }
+      }
+      function refreshAnnouncements() {
+        loadAnnouncements();
+      }
+
+      /* ---------- COURSES ---------- */
+      const courses = [
+        { name: "Database Systems", credits: 3, teacher: "Dr. Rahman" },
+        { name: "Software Engineering", credits: 3, teacher: "Mr. Hasan" },
+        { name: "Discrete Mathematics", credits: 3, teacher: "Ms. Amin" },
+        { name: "Add/Drop Deadline", value: "August 20, 2025" },
+        { name: "Last Date of Registration", value: "August 15, 2025" },
+      ];
+      function renderCourses() {
+        const ul = document.getElementById("course-ul");
+        ul.innerHTML = "";
+        courses.forEach(c => {
+          if (c.credits) {
+            const li = document.createElement("li");
+            li.textContent = `${c.name} (${c.credits} Credits) - Teacher: ${c.teacher}`;
+            ul.appendChild(li);
+          } else {
+            const li = document.createElement("li");
+            li.textContent = `${c.name}: ${c.value}`;
+            ul.appendChild(li);
+          }
+        });
+      }
+
+      /* ---------- SCHEDULE (exam table) ---------- */
+      const examSchedule = [
+        { course: "Database Systems", date: "Sep 03, 2025", time: "10:00 AM", room: "Aud-1" },
+        { course: "Software Engineering", date: "Sep 06, 2025", time: "12:00 PM", room: "Aud-2" },
+        { course: "Discrete Mathematics", date: "Sep 10, 2025", time: "09:00 AM", room: "Aud-3" },
+      ];
+      function renderExamSchedule() {
+        const container = document.getElementById("exam-schedule");
+        let html = `
+          <table class="table">
+            <thead>
+              <tr><th>Course</th><th>Date</th><th>Time</th><th>Room</th></tr>
+            </thead>
+            <tbody>
+        `;
+        examSchedule.forEach(e => {
+          html += `<tr><td>${e.course}</td><td>${e.date}</td><td>${e.time}</td><td>${e.room}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+
+      /* ---------- DOCUMENT REQUESTS ---------- */
+      const docRequests = [];
+      function createDocRequest(type) {
+        const req = { id: Date.now(), type, status: "Submitted", created: new Date().toLocaleString() };
+        docRequests.unshift(req);
+        renderDocRequests();
+        alert(`📬 ${type} request submitted`);
+      }
+      function renderDocRequests() {
+        const container = document.getElementById("doc-requests");
+        if (!docRequests.length) {
+          container.innerHTML = `<div class="card"><em>No requests yet.</em></div>`;
+          return;
+        }
+        let html = `
+          <table class="table">
+            <thead><tr><th>Type</th><th>Status</th><th>Created</th><th>Action</th></tr></thead>
+            <tbody>
+        `;
+        docRequests.forEach(r => {
+          html += `
+            <tr>
+              <td>${r.type}</td>
+              <td><span class="badge info">${r.status}</span></td>
+              <td>${r.created}</td>
+              <td>
+                <button class="action-btn" onclick="markDocReady(${r.id})">Mark Ready</button>
+              </td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+      function markDocReady(id) {
+        const item = docRequests.find(x => x.id === id);
+        if (item) {
+          item.status = "Ready for Pickup";
+          renderDocRequests();
+        }
+      }
+
+      /* ---------- ANONYMOUS POSTS ---------- */
+      let anonymousPosts = [
+        "Library Wi-Fi is too slow.",
+        "Need more practice sessions before midterms."
+      ];
+      function renderAnonPosts() {
+        const ul = document.getElementById("anon-list");
+        ul.innerHTML = "";
+        anonymousPosts.forEach(p => {
+          const li = document.createElement("li");
+          li.textContent = p;
+          ul.appendChild(li);
+        });
+      }
+      function sendAnonymousPost() {
+        const message = document.getElementById("anonInput").value.trim();
+        if (message) {
+          anonymousPosts.unshift(message);
+          document.getElementById("anonInput").value = "";
+          renderAnonPosts();
+          alert("✅ Anonymous post submitted.");
+        } else {
+          alert("⚠️ Empty message not allowed.");
+        }
+      }
+
+      /* ---------- COMPETITIVE PROGRAMMING ---------- */
+      let cpEnrolled = false;
+      const cpLeaderboard = [
+        { name: "You", points: 1200 },
+        { name: "Ayan", points: 1150 },
+        { name: "Rafi", points: 1100 },
+      ];
+      const cpProblems = [
+        { id: "#101", title: "Two Sum (Arrays)" },
+        { id: "#205", title: "Valid Anagram (Strings)" },
+        { id: "#310", title: "Shortest Path (Graphs)" },
+      ];
+
+      function enrollCP() {
+        if (cpEnrolled) return alert("You are already enrolled!");
+        cpEnrolled = true;
+        alert("✅ You have enrolled in Competitive Programming");
+      }
+      function renderCP() {
+        // Leaderboard
+        const lb = document.getElementById("cp-leaderboard");
+        let html = `<table class="table"><thead><tr><th>Rank</th><th>Name</th><th>Points</th></tr></thead><tbody>`;
+        cpLeaderboard
+          .sort((a,b) => b.points - a.points)
+          .forEach((u, i) => { html += `<tr><td>${i+1}</td><td>${u.name}</td><td>${u.points}</td></tr>`; });
+        html += `</tbody></table>`;
+        lb.innerHTML = html;
+
+        // Problems
+        const probs = document.getElementById("cp-problems");
+        probs.innerHTML = "";
+        cpProblems.forEach(p => {
+          const li = document.createElement("li");
+          li.innerHTML = `${p.id} — ${p.title} <button class="action-btn" onclick="alert('Opening ${p.id}...')">Solve</button>`;
+          probs.appendChild(li);
+        });
+      }
+
+      /* ---------- EVENTS ---------- */
+      const registeredEvents = [];
+      function enrollEvent(name) {
+        if (registeredEvents.find(e => e.name === name)) {
+          alert(`You are already enrolled in ${name}.`);
+          return;
+        }
+        registeredEvents.push({ name, status: "Registered", date: new Date().toLocaleDateString() });
+        renderRegisteredEvents();
+        alert(`✅ Enrolled for ${name}`);
+      }
+      function renderRegisteredEvents() {
+        const container = document.getElementById("registered-events");
+        if (!registeredEvents.length) {
+          container.innerHTML = `<div class="card"><em>No events registered yet.</em></div>`;
+          return;
+        }
+        let html = `
+          <table class="table">
+            <thead><tr><th>Event</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody>
+        `;
+        registeredEvents.forEach((e, idx) => {
+          html += `
+            <tr>
+              <td>${e.name}</td>
+              <td><span class="badge success">${e.status}</span></td>
+              <td>${e.date}</td>
+              <td><button class="action-btn" onclick="cancelEvent(${idx})">Cancel</button></td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+      function cancelEvent(index) {
+        registeredEvents.splice(index, 1);
+        renderRegisteredEvents();
+      }
+
+      /* ---------- REPORTS ---------- */
+      const reports = [];
+      function submitReport() {
+        const type = document.getElementById("issueType").value;
+        const location = document.getElementById("issueLocation").value.trim() || "N/A";
+        const desc = document.getElementById("issueDesc").value.trim();
+        const item = { id: Date.now(), type, location, desc, status: "Open", created: new Date().toLocaleString() };
+        reports.unshift(item);
+        renderReports();
+        document.getElementById("issueDesc").value = "";
+        alert("✅ Report submitted");
+      }
+      function quickReport(type) {
+        const item = { id: Date.now(), type, location: "N/A", desc: "", status: "Open", created: new Date().toLocaleString() };
+        reports.unshift(item);
+        renderReports();
+        alert(`🔧 Reported: ${type}`);
+      }
+      function renderReports() {
+        const container = document.getElementById("report-list");
+        if (!reports.length) {
+          container.innerHTML = `<div class="card"><em>No reports yet.</em></div>`;
+          return;
+        }
+        let html = `
+          <table class="table">
+            <thead><tr><th>Issue</th><th>Location</th><th>Status</th><th>Created</th><th>Action</th></tr></thead>
+            <tbody>
+        `;
+        reports.forEach(r => {
+          html += `
+            <tr>
+              <td>${r.type}</td>
+              <td>${r.location}</td>
+              <td><span class="badge ${r.status === 'Open' ? 'warn' : 'success'}">${r.status}</span></td>
+              <td>${r.created}</td>
+              <td>
+                ${r.status === "Open"
+                  ? `<button class="action-btn" onclick="resolveReport(${r.id})">Mark Resolved</button>`
+                  : `<span class="badge success">Resolved</span>`
+                }
+              </td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+      function resolveReport(id) {
+        const r = reports.find(x => x.id === id);
+        if (r) { r.status = "Resolved"; renderReports(); }
+      }
+
+      /* ---------- INIT ---------- */
+      window.onload = function() {
+        setDashboardStats();
+        renderClasses();
+        loadAnnouncements();
+        renderCourses();
+        renderExamSchedule();
+        renderDocRequests();
+        renderAnonPosts();
+        renderCP();
+        renderRegisteredEvents();
+        renderReports();
+      };
+    </script>
   </body>
 </html>
