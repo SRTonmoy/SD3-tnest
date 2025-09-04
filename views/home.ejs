@@ -324,6 +324,12 @@
           <button class="action-btn" onclick="alert('📤 Assignment submitted!')">Submit Assignment</button>
         </div>
       </section>
+      <!-- ASSIGNMENTS -->
+<section id="assignments">
+  <h2>📝 Assignments</h2>
+  <div id="assignment-list" class="card"></div>
+</section>
+
 
       <!-- ANNOUNCEMENTS -->
       <section id="announcements">
@@ -376,6 +382,11 @@
         </div>
         <h3 style="margin-top:12px;">Your Requests</h3>
         <div id="doc-requests" class="card"></div>
+        <div class="card" style="margin-top:12px;">
+  <h3>📎 Shared Files from Teachers</h3>
+  <div id="shared-files"></div>
+</div>
+
       </section>
 
       <!-- ANONYMOUS -->
@@ -585,46 +596,60 @@
         container.innerHTML = html;
       }
 
-      /* ---------- ANNOUNCEMENTS (filter + pinned) ---------- */
-      let announcements = [
-        { date: "Sep 20, 2025", title: "Final Exam Notice", description: "Final exams start from Oct 1. Check schedule.", teacher: "Shahria", pinned: true },
-        { date: "Aug 20, 2025", title: "Midterm Exam Notice", description: "Midterm exams start from Sep 1. Check schedule.", teacher: "Rahman", pinned: false },
-        { date: "Aug 18, 2025", title: "Assignment Submission", description: "Submit DBMS assignment by Aug 25 via My Classes.", teacher: "Hasan", pinned: false },
-        { date: "Aug 15, 2025", title: "New Course Materials", description: "New SE lecture slides uploaded.", teacher: "Hasan", pinned: false },
-        { date: "Aug 12, 2025", title: "Lab Session Update", description: "Lab shifted to Wed 3PM for this week.", teacher: "Amin", pinned: false },
-      ];
+   /* ---------- ANNOUNCEMENTS (from backend) ---------- */
+async function loadAnnouncements() {
+  const teacherFilter = document.getElementById("filterTeacher").value;
+  const showPinnedFirst = document.getElementById("showPinned").checked;
 
-      function loadAnnouncements() {
-        const teacherFilter = document.getElementById("filterTeacher").value;
-        const showPinnedFirst = document.getElementById("showPinned").checked;
-        let items = announcements.slice();
+  try {
+    const res = await fetch("/announcements");
+    const data = await res.json();
 
-        if (teacherFilter !== "all") {
-          items = items.filter(a => a.teacher === teacherFilter);
-        }
-        if (showPinnedFirst) {
-          items.sort((a, b) => (b.pinned === true) - (a.pinned === true));
-        }
+    console.log("Announcements fetched:", data); // 🔎 Debug
 
-        const list = document.getElementById("announcement-list");
-        list.innerHTML = "";
-        items.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "card";
-          div.innerHTML = `
-            <h4 style="margin:0; color:#4ea1ff;">${item.title} ${item.pinned ? '<span class="badge info">Pinned</span>' : ''}</h4>
-            <small style="color:#9aa3b2;">${item.date} · By ${item.teacher}</small>
-            <p style="margin:8px 0 0 0; font-size:14px;">${item.description}</p>
-          `;
-          list.appendChild(div);
-        });
-        if (!items.length) {
-          list.innerHTML = `<div class="card"><em>No announcements found.</em></div>`;
-        }
-      }
-      function refreshAnnouncements() {
-        loadAnnouncements();
-      }
+    let items = data.slice();
+
+    // Filter by teacher if dropdown selected
+    if (teacherFilter !== "all") {
+      items = items.filter(a => a.createdByName === teacherFilter);
+    }
+
+    // Sort (newest first if "show pinned first" checked)
+    if (showPinnedFirst) {
+      items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+
+    const list = document.getElementById("announcement-list");
+    list.innerHTML = "";
+    if (!items.length) {
+      list.innerHTML = `<div class="card"><em>No announcements found.</em></div>`;
+      return;
+    }
+
+    // Render announcements
+    items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <h4 style="margin:0; color:#4ea1ff;">
+          ${item.text}
+        </h4>
+        <small style="color:#9aa3b2;">
+          ${new Date(item.createdAt).toLocaleString()} · By ${item.createdByName || "Teacher"}
+        </small>
+      `;
+      list.appendChild(div);
+    });
+  } catch (err) {
+    console.error("❌ Error loading announcements:", err);
+    document.getElementById("announcement-list").innerHTML = `<em>⚠️ Failed to load announcements</em>`;
+  }
+}
+
+function refreshAnnouncements() {
+  loadAnnouncements();
+}
+
 
       /* ---------- COURSES ---------- */
       const courses = [
@@ -873,17 +898,102 @@
 
       /* ---------- INIT ---------- */
       window.onload = function() {
-        setDashboardStats();
-        renderClasses();
-        loadAnnouncements();
-        renderCourses();
-        renderExamSchedule();
-        renderDocRequests();
-        renderAnonPosts();
-        renderCP();
-        renderRegisteredEvents();
-        renderReports();
-      };
+  loadSharedFiles();
+  setDashboardStats();
+  renderClasses();
+  loadAnnouncements();
+  loadAssignments();   // ✅ new
+  renderCourses();
+  renderExamSchedule();
+  renderDocRequests();
+  renderAnonPosts();
+  renderCP();
+  renderRegisteredEvents();
+  renderReports();
+};
+
+      async function loadSharedFiles() {
+  const cont = document.getElementById("shared-files");
+  if (!cont) return;
+  cont.innerHTML = "Loading...";
+  try {
+    const res = await fetch("/uploads/files");
+    const files = await res.json();
+    if (!Array.isArray(files) || files.length === 0) {
+      cont.innerHTML = "<em>No shared files yet.</em>";
+      return;
+    }
+    let html = `
+      <table class="table">
+        <thead><tr><th>File</th><th>By</th><th>When</th><th></th></tr></thead>
+        <tbody>`;
+    files.forEach(f => {
+      html += `
+        <tr>
+          <td><a href="${f.url}" target="_blank">${f.originalName}</a></td>
+          <td>${f.uploadedByName}</td>
+          <td>${new Date(f.uploadedAt).toLocaleString()}</td>
+          <td><a class="action-btn" href="/uploads/download/${f.id}">Download</a></td>
+        </tr>`;
+    });
+    html += `</tbody></table>`;
+    cont.innerHTML = html;
+  } catch (e) {
+    console.error(e);
+    cont.innerHTML = "Failed to load shared files.";
+  }
+}
+/* ---------- ASSIGNMENTS (from backend) ---------- */
+async function loadAssignments() {
+  const list = document.getElementById("assignment-list");
+  list.innerHTML = "Loading...";
+  try {
+    const res = await fetch("/assignments");
+    const data = await res.json();
+
+    if (!data.length) {
+      list.innerHTML = `<em>No assignments yet.</em>`;
+      return;
+    }
+
+    let html = `
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Deadline</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    data.forEach(a => {
+      html += `
+        <tr>
+          <td>${a.title}</td>
+          <td>${new Date(a.deadline).toLocaleDateString()}</td>
+          <td>${a.description || ""}</td>
+          <td>
+            <button class="action-btn" onclick="submitAssignment('${a._id}')">Submit</button>
+          </td>
+        </tr>
+      `;
+    });
+
+    html += "</tbody></table>";
+    list.innerHTML = html;
+  } catch (err) {
+    list.innerHTML = `<em>⚠️ Failed to load assignments</em>`;
+  }
+}
+
+function submitAssignment(id) {
+  alert("📤 Assignment submitted for ID: " + id + " (demo only)");
+  // Later: we can hook this with file upload API
+}
+
     </script>
   </body>
 </html>
