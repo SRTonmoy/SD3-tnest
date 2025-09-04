@@ -1,17 +1,23 @@
 {
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "mongoose": "^8.16.4"
-  },
   "name": "sd3-tnest",
   "version": "1.0.0",
   "description": "**T.Nestia** is a full-stack web platform designed to unify **students** and **teachers** into one collaborative academic space. The system offers centralized access to class resources, announcements, schedules, events, and more.",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^8.16.4",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   },
   "repository": {
     "type": "git",
