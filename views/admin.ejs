@@ -7,97 +7,185 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="min-h-screen flex flex-col font-sans">
+<body class="min-h-screen flex font-sans">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between bg-gray-800 p-4 shadow-lg">
-    <h1 class="text-2xl font-bold flex items-center gap-2">
-      <span>🛠️</span> Admin Dashboard
-    </h1>
-    <div class="flex items-center gap-4">
-      <span class="text-gray-300">Welcome, <%= username %></span>
-      <button
-        onclick="location.href='http://localhost:5000/'"
-        class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-all duration-300"
-      >
-        Logout
-      </button>
-    </div>
-  </header>
-
-  <!-- Main content -->
-  <main class="flex-grow p-6 max-w-7xl mx-auto">
-    
-    <!-- Stats cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-      
-      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
-        <div class="flex items-center gap-3">
-          <span data-feather="users" class="text-blue-500"></span>
-          <p class="text-gray-400 uppercase text-sm">Total Users</p>
-        </div>
-        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalUsers %></p>
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
-        <div class="flex items-center gap-3">
-          <span data-feather="book" class="text-green-500"></span>
-          <p class="text-gray-400 uppercase text-sm">Total Students</p>
-        </div>
-        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalStudents %></p>
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
-        <div class="flex items-center gap-3">
-          <span data-feather="user-check" class="text-yellow-500"></span>
-          <p class="text-gray-400 uppercase text-sm">Total Teachers</p>
-        </div>
-        <p class="mt-3 text-3xl font-bold text-white"><%= stats.totalTeachers %></p>
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transform transition-all duration-300">
-        <div class="flex items-center gap-3">
-          <span data-feather="clock" class="text-red-500"></span>
-          <p class="text-gray-400 uppercase text-sm">Pending Approvals</p>
-        </div>
-        <p class="mt-3 text-3xl font-bold text-white"><%= stats.pendingApprovals || 0 %></p>
-      </div>
-
+  <!-- Sidebar -->
+  <aside id="sidebar" class="bg-gray-800 w-64 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 flex flex-col">
+    <div class="p-6 border-b border-gray-700">
+      <h2 class="text-xl font-bold flex items-center gap-2">🛠️ Admin Panel</h2>
+      <p class="text-sm text-gray-400 mt-1">Welcome, <%= username %></p>
     </div>
 
-    <!-- Action buttons -->
-    <div class="flex flex-wrap gap-6">
-      <button
-        class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-        onclick="alert('👥 Manage Users clicked!')"
-      >
-        <span data-feather="users"></span> Manage Users
+    <nav class="flex-1 p-4 space-y-2">
+      <button onclick="showSection('dashboard', this)" class="menu-btn w-full flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700 active">
+        <i data-feather="layout"></i> Dashboard
       </button>
-
-      <button
-        class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-        onclick="alert('📊 View Reports clicked!')"
-      >
-        <span data-feather="bar-chart-2"></span> View Reports
+      <button onclick="showSection('users', this)" class="menu-btn w-full flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700">
+        <i data-feather="users"></i> Manage Users
       </button>
+      <button onclick="showSection('reports', this)" class="menu-btn w-full flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700">
+        <i data-feather="file-text"></i> Reports
+      </button>
+      <button onclick="showSection('settings', this)" class="menu-btn w-full flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700">
+        <i data-feather="settings"></i> Settings
+      </button>
+    </nav>
 
-      <button
-        class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-        onclick="alert('⚙️ System Settings clicked!')"
-      >
-        <span data-feather="settings"></span> System Settings
+    <div class="p-4 border-t border-gray-700">
+      <button onclick="location.href='http://localhost:5000/'" class="w-full flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-white">
+        <i data-feather="log-out"></i> Logout
       </button>
     </div>
+  </aside>
 
-  </main>
+  <!-- Main -->
+  <div class="flex-1 md:ml-64">
+    <!-- Header -->
+    <header class="flex items-center justify-between bg-gray-800 p-4 shadow md:hidden">
+      <h1 class="text-lg font-bold">Admin Dashboard</h1>
+      <button onclick="toggleSidebar()"><i data-feather="menu"></i></button>
+    </header>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 p-4 text-center text-sm text-gray-400 mt-auto">
-    &copy; 2025 T.Nestia. All rights reserved.
-  </footer>
+    <main class="p-6 max-w-7xl mx-auto space-y-10">
+
+      <!-- Dashboard -->
+      <section id="dashboard" class="section">
+        <h2 class="text-2xl font-bold mb-4">📊 Dashboard Overview</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <div class="flex items-center gap-3">
+              <i data-feather="users" class="text-blue-500"></i>
+              <p class="text-gray-400 uppercase text-sm">Total Users</p>
+            </div>
+            <p class="mt-3 text-3xl font-bold"><%= stats.totalUsers %></p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <div class="flex items-center gap-3">
+              <i data-feather="book" class="text-green-500"></i>
+              <p class="text-gray-400 uppercase text-sm">Students</p>
+            </div>
+            <p class="mt-3 text-3xl font-bold"><%= stats.totalStudents %></p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <div class="flex items-center gap-3">
+              <i data-feather="user-check" class="text-yellow-500"></i>
+              <p class="text-gray-400 uppercase text-sm">Teachers</p>
+            </div>
+            <p class="mt-3 text-3xl font-bold"><%= stats.totalTeachers %></p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <div class="flex items-center gap-3">
+              <i data-feather="clock" class="text-red-500"></i>
+              <p class="text-gray-400 uppercase text-sm">Pending Approvals</p>
+            </div>
+            <p class="mt-3 text-3xl font-bold"><%= stats.pendingApprovals || 0 %></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Manage Users -->
+      <section id="users" class="section hidden">
+        <h2 class="text-2xl font-bold mb-4">👥 Manage Users</h2>
+        <div class="flex gap-4 mb-4">
+          <button class="tab-btn bg-blue-600 text-white px-4 py-2 rounded" onclick="switchUserTab('students')">Students</button>
+          <button class="tab-btn bg-gray-700 px-4 py-2 rounded" onclick="switchUserTab('teachers')">Teachers</button>
+        </div>
+
+        <!-- Students -->
+        <div id="students-tab">
+          <table class="w-full bg-gray-800 rounded-lg shadow overflow-hidden">
+            <thead class="bg-gray-700 text-gray-300 text-sm">
+              <tr><th class="p-3 text-left">Name</th><th>Email</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-700 hover:bg-gray-700/40">
+                <td class="p-3">Rafi</td><td>rafi@example.com</td><td>Active</td>
+                <td><button class="text-red-400 hover:text-red-600">Suspend</button></td>
+              </tr>
+              <tr class="border-t border-gray-700 hover:bg-gray-700/40">
+                <td class="p-3">Ayan</td><td>ayan@example.com</td><td>Pending</td>
+                <td><button class="text-green-400 hover:text-green-600">Approve</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Teachers -->
+        <div id="teachers-tab" class="hidden">
+          <table class="w-full bg-gray-800 rounded-lg shadow overflow-hidden">
+            <thead class="bg-gray-700 text-gray-300 text-sm">
+              <tr><th class="p-3 text-left">Name</th><th>Email</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-700 hover:bg-gray-700/40">
+                <td class="p-3">Dr. Rahman</td><td>rahman@example.com</td><td>Active</td>
+                <td><button class="text-red-400 hover:text-red-600">Suspend</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Reports -->
+      <section id="reports" class="section hidden">
+        <h2 class="text-2xl font-bold mb-4">📑 Reports</h2>
+        <div class="bg-gray-800 rounded-lg shadow p-4 space-y-4">
+          <div class="border-b border-gray-700 pb-3">
+            <p class="font-semibold">Projector Not Working - Lab 302</p>
+            <small class="text-gray-400">Submitted on Sep 3, 2025</small>
+            <div class="mt-2">
+              <button class="text-green-400 hover:text-green-600">Mark Resolved</button>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold">WiFi Down - Library</p>
+            <small class="text-gray-400">Submitted on Sep 4, 2025</small>
+            <div class="mt-2">
+              <button class="text-green-400 hover:text-green-600">Mark Resolved</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section id="settings" class="section hidden">
+        <h2 class="text-2xl font-bold mb-4">⚙️ System Settings</h2>
+        <div class="bg-gray-800 rounded-lg shadow p-4 space-y-4">
+          <label class="flex items-center gap-2"><input type="checkbox" class="form-checkbox"> Enable Dark Mode</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="form-checkbox"> Email Notifications</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="form-checkbox"> Auto Backup</label>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <script>
-    feather.replace()
+    feather.replace();
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("-translate-x-full");
+    }
+
+    function showSection(id, btn) {
+      document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      document.querySelectorAll(".menu-btn").forEach(b => b.classList.remove("bg-gray-700","active"));
+      btn.classList.add("bg-gray-700","active");
+    }
+
+    function switchUserTab(tab) {
+      document.getElementById("students-tab").classList.add("hidden");
+      document.getElementById("teachers-tab").classList.add("hidden");
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("bg-blue-600","text-white"));
+      if(tab==="students"){
+        document.getElementById("students-tab").classList.remove("hidden");
+        document.querySelectorAll(".tab-btn")[0].classList.add("bg-blue-600","text-white");
+      }else{
+        document.getElementById("teachers-tab").classList.remove("hidden");
+        document.querySelectorAll(".tab-btn")[1].classList.add("bg-blue-600","text-white");
+      }
+    }
   </script>
 </body>
 </html>
