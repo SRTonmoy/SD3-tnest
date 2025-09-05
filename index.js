@@ -49,3 +49,5 @@ const assignmentRoutes = require("./routes/assignmentRoutes");
 app.use("/", assignmentRoutes);
 const announcementRoutes = require("./routes/announcementRoutes");
 app.use("/", announcementRoutes);
+const submissionRoutes = require("./routes/submissionRoutes");
+app.use("/submissions", submissionRoutes);

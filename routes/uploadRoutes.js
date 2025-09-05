@@ -47,8 +47,6 @@ const upload = multer({
   limits: { fileSize: 15 * 1024 * 1024 } // 15MB
 });
 
-// ROUTES
-// teacher/admin can upload
 router.post("/uploads", isAuthenticated, requireRole("teacher", "admin"), upload.single("file"), uploadController.uploadFile);
 
 // all logged-in users can list files
