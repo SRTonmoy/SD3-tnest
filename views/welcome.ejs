@@ -42,15 +42,12 @@
   <!-- Hero Section -->
   <main class="flex flex-col items-center justify-center px-6 text-center mt-16">
     <img src="https://cdn-icons-png.flaticon.com/512/4221/4221462.png" alt="Students" class="w-32 mb-6 animate-bounce" />
-
     <h2 class="text-5xl font-extrabold mb-4 text-white leading-tight">
       Empowering <span class="text-indigo-400">Students</span> & <span class="text-indigo-400">Teachers</span>
     </h2>
-
     <p class="text-lg text-gray-400 max-w-2xl mb-6">
       Welcome to <strong class="text-white">T.Nest</strong> — the all-in-one digital hub for learning, sharing, and growing together. Whether you're a student uploading assignments or a teacher sharing resources, we connect everyone through one powerful platform.
     </p>
-
     <div class="space-x-4">
       <a href="/login" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg transition font-semibold">Get Started</a>
       <a href="/signup" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg shadow-lg transition font-semibold">Join Now</a>
@@ -103,7 +100,7 @@
   <!-- Request Admin Access Section -->
   <section class="bg-gray-800 p-8 mx-6 rounded-xl mb-12 max-w-3xl mx-auto">
     <h3 class="text-3xl font-bold text-center mb-6 text-indigo-300">Request Admin Access</h3>
-    <form action="/request-admin" method="POST" class="flex flex-col space-y-4 text-gray-300">
+    <form id="admin-request-form" class="flex flex-col space-y-4 text-gray-300">
       <label for="email" class="font-semibold">Your Email</label>
       <input type="email" id="email" name="email" required placeholder="your.email@example.com"
         class="p-3 rounded-md bg-gray-900 border border-gray-700 focus:border-indigo-400 focus:outline-none" />
@@ -116,6 +113,18 @@
         class="bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-lg shadow-lg font-semibold transition">
         Submit Request
       </button>
+
+      <!-- Success message -->
+      <p id="success-msg" class="hidden text-green-400 font-semibold mt-2 text-center">
+        🎉 Your request has been submitted successfully!
+      </p>
+
+      <!-- Fake Submission List -->
+      <ul id="submission-list" class="mt-4 text-gray-300 space-y-1">
+        <li>📄 John Doe — Pending</li>
+        <li>📄 Jane Smith — Approved</li>
+        <li>📄 Alex Johnson — Pending</li>
+      </ul>
     </form>
   </section>
 
@@ -123,6 +132,35 @@
   <footer class="bg-gray-900 p-4 text-center text-sm text-gray-500 border-t border-gray-700">
     © 2025 <span class="text-indigo-300 font-semibold">T.Nest</span> — Designed to Empower Education for All
   </footer>
+
+  <script>
+    // Fake submission handler
+    const form = document.getElementById('admin-request-form');
+    const successMsg = document.getElementById('success-msg');
+    const submissionList = document.getElementById('submission-list');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent actual submission
+
+      // Get form data
+      const email = form.email.value;
+      const message = form.message.value;
+
+      // Show success message
+      successMsg.classList.remove('hidden');
+
+      // Append fake submission to the list
+      const li = document.createElement('li');
+      li.textContent = `📄 ${email} — Pending`;
+      submissionList.appendChild(li);
+
+      // Clear form inputs
+      form.reset();
+
+      // Hide the success message after 4 seconds
+      setTimeout(() => successMsg.classList.add('hidden'), 4000);
+    });
+  </script>
 
 </body>
 </html>
