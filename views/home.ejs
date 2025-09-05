@@ -244,6 +244,10 @@
       <a href="#" onclick="showSection('documents')">
         <i data-lucide="file"></i> Document Access
       </a>
+      <a href="#" onclick="showSection('assignments')">
+  <i data-lucide="clipboard-list"></i> Assignments
+</a>
+
       <a href="#" onclick="showSection('anonymous')">
         <i data-lucide="user"></i> Anonymous Post
       </a>
@@ -325,10 +329,13 @@
         </div>
       </section>
       <!-- ASSIGNMENTS -->
-<section id="assignments">
-  <h2>📝 Assignments</h2>
-  <div id="assignment-list" class="card"></div>
+<section id="assignments" class="section hidden">
+  <div class="card">
+    <h3>📝 Assignments</h3>
+    <div id="assignment-list"></div>
+  </div>
 </section>
+
 
 
       <!-- ANNOUNCEMENTS -->
@@ -990,9 +997,38 @@ async function loadAssignments() {
 }
 
 function submitAssignment(id) {
-  alert("📤 Assignment submitted for ID: " + id + " (demo only)");
-  // Later: we can hook this with file upload API
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "*/*";
+
+  input.onchange = async () => {
+    const file = input.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch(`/submissions/${id}`, {
+        method: "POST",
+        body: formData,
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        alert("✅ Submission successful!");
+      } else {
+        alert("❌ Failed: " + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Error submitting assignment.");
+    }
+  };
+
+  input.click();
 }
+
 
     </script>
   </body>

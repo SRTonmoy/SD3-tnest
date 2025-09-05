@@ -214,6 +214,68 @@
         <button class="btn" onclick="createAssignment()"><i data-lucide="plus-circle"></i> Create Assignment</button>
         <div id="assignment-list" style="margin-top:14px"></div>
       </div>
+      <div class="card">
+  <h3><i data-lucide="inbox"></i> Submitted Assignments</h3>
+ 
+  <table>
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Email</th>
+        <th>Assignment</th>
+        <th>Submitted At</th>
+        <th style="text-align:right">File</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Md. Shahriar Rahman</td>
+        <td>shahriar@student.com</td>
+        <td>Algebra Worksheet 01</td>
+        <td>2025-09-05 10:30 AM</td>
+        <td style="text-align:right">
+          <a href="/uploads/dummy1.jpg" class="btn-ghost" target="_blank">
+            <i data-lucide="download"></i> Download
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Mst. Ayesha Shiddika Nisu</td>
+        <td>ayesha@student.com</td>
+        <td>Physics Lab Report</td>
+        <td>2025-09-04 03:15 PM</td>
+        <td style="text-align:right">
+          <a href="/uploads/dummy2.jpg" class="btn-ghost" target="_blank">
+            <i data-lucide="download"></i> Download
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Rafi Ahmed</td>
+        <td>rafi@student.com</td>
+        <td>Chemistry Assignment</td>
+        <td>2025-09-03 09:45 AM</td>
+        <td style="text-align:right">
+          <a href="/uploads/dummy3.jpg" class="btn-ghost" target="_blank">
+            <i data-lucide="download"></i> Download
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <div class="empty">
+      <i data-lucide="inbox"></i>
+      <div>Loading submissions…</div>
+      <small>Students' submissions will appear here.</small>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
     </section>
 
     <!-- Announcements -->
@@ -399,6 +461,8 @@
           list.innerHTML = `<div class="empty"><i data-lucide="clipboard-x"></i> No assignments yet</div>`;
           refreshIcons();
           return;
+          console.log(data);
+
         }
         list.innerHTML = data.map(a => `
           <div class="list-item">
@@ -448,11 +512,64 @@
         refreshIcons();
       }
     }
+    async function loadSubmissions() {
+  const list = document.getElementById("submission-list");
+  list.innerHTML = `<div class="skeleton" style="width:70%"></div>`;
 
-    /* ---------- INIT ---------- */
-    window.onload = function(){
-      loadFiles(); loadAssignments(); loadAnnouncements(); refreshIcons();
-    };
+  try {
+    const res = await fetch("/submissions");
+    const data = await res.json();
+
+    if (!Array.isArray(data) || !data.length) {
+      list.innerHTML = `<div class="empty"><i data-lucide="inbox"></i> No submissions yet</div>`;
+      lucide.createIcons();
+      return;
+    }
+
+    let html = `<table>
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Email</th>
+          <th>Assignment</th>
+          <th>Submitted At</th>
+          <th style="text-align:right">File</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+    data.forEach(sub => {
+      html += `
+        <tr>
+          <td>${sub.studentName}</td>
+          <td>${sub.studentEmail}</td>
+          <td>${sub.assignmentTitle}</td>
+          <td>${new Date(sub.submittedAt).toLocaleString()}</td>
+          <td style="text-align:right">
+            <a href="${sub.fileUrl}" class="btn-ghost" style="text-decoration:none" target="_blank">
+              <i data-lucide="download"></i> Download
+            </a>
+          </td>
+        </tr>`;
+    });
+
+    html += `</tbody></table>`;
+    list.innerHTML = html;
+    lucide.createIcons();
+  } catch (err) {
+    list.innerHTML = `<div class="empty"><i data-lucide="alert-triangle"></i> Failed to load submissions</div>`;
+    lucide.createIcons();
+  }
+}
+
+// Load on page load
+window.onload = function() {
+  loadFiles();
+  loadAssignments();
+  loadAnnouncements();
+  loadSubmissions(); 
+  lucide.createIcons();
+};
   </script>
 </body>
 </html>
